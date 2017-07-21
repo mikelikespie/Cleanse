@@ -181,6 +181,10 @@ private class ComponentInfo {
             }
         #endif
 
+        if requirement == ProviderKey(Provider<RootRef>.self) {
+            return
+        }
+
         guard doesHaveRequirement(requirement) else {
             errors.append(
                 MissingProvider(requests: [

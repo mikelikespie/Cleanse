@@ -234,6 +234,13 @@ class Graph : BinderBase {
                 self.providers[legacyObjectGraphKey] = Provider<LegacyObjectGraph> {  [weak self] in LegacyObjectGraph(graph: self!) }
             }
         #endif
+        
+        
+        let rootRefGraphKey = RequirementKey(Provider<RootRef>.self)
+        
+        if self.requirements[rootRefGraphKey] != nil && self.providers[rootRefGraphKey] == nil {
+            self.providers[rootRefGraphKey] = Provider<RootRef> {  [weak self] in RootRef(graph: self!) }
+        }
 
         
         // TODO: validate cycles
